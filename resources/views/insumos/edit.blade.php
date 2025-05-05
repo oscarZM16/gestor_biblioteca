@@ -39,7 +39,6 @@
             <select name="estado" id="estado" class="form-select" required>
                 <option value="disponible" {{ $insumo->estado == 'disponible' ? 'selected' : '' }}>Disponible</option>
                 <option value="prestado" {{ $insumo->estado == 'prestado' ? 'selected' : '' }}>Prestado</option>
-                <option value="averiado" {{ $insumo->estado == 'averiado' ? 'selected' : '' }}>Averiado</option>
             </select>
         </div>
 
