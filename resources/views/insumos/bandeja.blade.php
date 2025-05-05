@@ -5,7 +5,7 @@
     {{-- FORMULARIO DE FILTRO --}}
     <form method="GET" action="{{ route('insumos.bandeja') }}" class="row g-3 mb-4 align-items-end">
         <div class="col-md-4">
-            <label class="form-label">Nombre del insumo</label>
+            <label class="form-label">Nombre del Libro</label>
             <input type="text" name="nombre" class="form-control" value="{{ request('nombre') }}" placeholder="Buscar por nombre">
         </div>
         <div class="col-md-3">
@@ -20,18 +20,19 @@
             <button type="submit" class="btn btn-primary">Filtrar</button>
             <a href="{{ route('insumos.bandeja') }}" class="btn btn-secondary">Limpiar</a>
         </div>
+        
     </form>
 
-    <h2 class="mb-4">📦 Bandeja de Insumos</h2>
+    <h2 class="mb-4">📦 Bandeja de Libros</h2>
 
     {{-- DISPONIBLES --}}
     <div class="card mb-4">
-        <div class="card-header bg-success text-white">En Bodega (Disponibles)</div>
+        <div class="card-header bg-success text-white">Disponibles</div>
         <div class="card-body">
             @forelse($disponibles as $item)
                 <p>🟢 {{ $item->nombre }} - {{ $item->descripcion }}</p>
             @empty
-                <p>No hay insumos disponibles.</p>
+                <p>No hay libros disponibles.</p>
             @endforelse
         </div>
     </div>
@@ -43,19 +44,7 @@
             @forelse($prestados as $item)
                 <p>🟡 {{ $item->nombre }} - {{ $item->descripcion }}</p>
             @empty
-                <p>No hay insumos prestados.</p>
-            @endforelse
-        </div>
-    </div>
-
-    {{-- AVERIADOS --}}
-    <div class="card mb-4">
-        <div class="card-header bg-danger text-white">Averiados</div>
-        <div class="card-body">
-            @forelse($averiados as $item)
-                <p>🔴 {{ $item->nombre }} - {{ $item->descripcion }}</p>
-            @empty
-                <p>No hay insumos averiados.</p>
+                <p>No hay libros prestados.</p>
             @endforelse
         </div>
     </div>

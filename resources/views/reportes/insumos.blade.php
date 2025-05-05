@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">📦 Reporte de Insumos</h2>
+    <h2 class="mb-4">📦 Reporte de Libros</h2>
 
     <table class="table table-bordered table-hover shadow-sm">
         <thead class="table-dark">
@@ -27,10 +27,15 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">No hay insumos registrados.</td>
+                    <td colspan="6" class="text-center">No hay libros registrados.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+    <div class="text-center mt-4">
+        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+            ⬅ Volver al Panel Principal
+        </a>
+    </div>
 </div>
 @endsection

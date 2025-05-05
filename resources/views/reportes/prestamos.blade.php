@@ -8,7 +8,7 @@
         <thead class="table-dark">
             <tr>
                 <th>#</th>
-                <th>Insumo</th>
+                <th>Libro</th>
                 <th>Solicitado por</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>

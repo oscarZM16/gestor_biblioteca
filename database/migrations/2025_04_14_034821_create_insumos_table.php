@@ -18,7 +18,7 @@ class CreateInsumosTable extends Migration
         $table->string('nombre');
         $table->text('descripcion')->nullable();
         $table->integer('cantidad')->default(1);
-        $table->string('estado')->default('disponible'); // disponible, averiado, prestado, etc.
+        $table->string('estado')->default('disponible'); // disponible, prestado.
         $table->timestamps();
     });
 }

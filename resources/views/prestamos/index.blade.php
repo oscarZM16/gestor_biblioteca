@@ -14,7 +14,7 @@
         <table class="table table-bordered align-middle">
             <thead>
                 <tr>
-                    <th>Insumo</th>
+                    <th>Libro</th>
                     <th>Estado</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
@@ -35,6 +35,11 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="text-center mt-4">
+            <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+                ⬅ Volver al Panel Principal
+            </a>
+        </div>
     </div>
 </div>
 @endsection

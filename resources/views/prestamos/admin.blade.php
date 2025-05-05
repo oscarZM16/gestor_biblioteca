@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Funcionario</th>
-                    <th>Insumo</th>
+                    <th>Libro</th>
                     <th>Estado</th>
                     <th>Rango Fechas</th>
                     <th>Acción</th>
@@ -50,6 +50,11 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center mt-4">
+            <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+                ⬅ Volver al Panel Principal
+            </a>
+        </div>
     </div>
 </div>
 @endsection

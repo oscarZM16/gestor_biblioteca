@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">Listado de Insumos</h2>
+    <h2 class="mb-4">Listado de Libros</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('insumos.create') }}" class="btn btn-primary mb-3">+ Agregar Insumo</a>
+    <a href="{{ route('insumos.create') }}" class="btn btn-primary mb-3">+ Agregar Libro</a>
 
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle">
@@ -35,15 +35,20 @@
                             <form action="{{ route('insumos.destroy', $insumo) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este insumo?')">Eliminar</button>
+                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Desea eliminar este libro?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="6">No hay insumos registrados.</td></tr>
+                    <tr><td colspan="6">No hay libros registrados.</td></tr>
                 @endforelse
             </tbody>
         </table>
+        <div class="text-center mt-4">
+            <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+                ⬅ Volver al Panel Principal
+            </a>
+        </div>
     </div>
 </div>
 @endsection

@@ -90,17 +90,15 @@
 <div id="sidebar">
     <div style="height: 60px;"></div>
     <div class="sidebar-section">
-        <h6>📦 Administración de Insumos</h6>
+        <h6>📚 Administración de Libros</h6>
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
-            <a href="{{ url('/insumos/create') }}">🧾 Crear Insumo</a>
-            <a href="{{ route('insumos.bandeja') }}">🖥️ Bandeja de Insumos</a>
-            <a href="{{ url('/bandeja') }}">📦 Bandeja Completa</a>
-            <a href="{{ route('insumos.index') }}">📋 Ver Todos los Insumos</a>
+            <a href="{{ url('/insumos/create') }}">🧾 Crear Libro</a>
+            <a href="{{ route('insumos.bandeja') }}">🖥️ Bandeja de Libro</a>
+            <a href="{{ route('insumos.index') }}">📋 Ver Todos los Libro</a>
         @else
-            <a class="disabled">🔒 Crear Insumo</a>
-            <a class="disabled">🔒 Bandeja de Insumos</a>
-            <a class="disabled">🔒 Bandeja Completa</a>
-            <a class="disabled">🔒 Ver Insumos</a>
+            <a class="disabled">🔒 Crear Libro</a>
+            <a class="disabled">🔒 Bandeja de Libro</a>
+            <a class="disabled">🔒 Ver Libro</a>
         @endif
     </div>
 
@@ -128,9 +126,9 @@
     <div class="sidebar-section">
         <h6>📊 Generación de Reportes</h6>
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
-            <a href="{{ route('reportes.insumos') }}">📦 Reporte de Insumos</a>
+            <a href="{{ route('reportes.insumos') }}">📦 Reporte de Libro</a>
             <a href="{{ route('reportes.prestamos') }}">📁 Reporte de Préstamos</a>
-            <a href="{{ route('reportes.disponibles') }}">📍 Insumos Disponibles</a>
+            <a href="{{ route('reportes.disponibles') }}">📍 Libro Disponibles</a>
         @else
             <a class="disabled">🔒 Acceso a Reportes</a>
         @endif
@@ -140,7 +138,7 @@
 <div id="mainContent">
     <div class="text-center mb-4">
         <h1 style="font-size: 2.2rem; font-weight: bold; color: #0d6efd;">
-            📦 InventarioApp
+            📦 Biblioteca
         </h1>
         <h4 class="text-muted">📊 Panel de Administración</h4>
     </div>
