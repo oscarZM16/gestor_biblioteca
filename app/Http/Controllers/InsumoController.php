@@ -40,7 +40,7 @@ class InsumoController extends Controller
 
         Insumo::create($request->all());
 
-        return redirect()->route('insumos.index')->with('success', 'Insumo creado correctamente');
+        return redirect()->route('insumos.index')->with('success', 'Libro creado correctamente');
     }
 
     public function edit(Insumo $insumo)
@@ -59,13 +59,13 @@ class InsumoController extends Controller
 
         $insumo->update($request->all());
 
-        return redirect()->route('insumos.index')->with('success', 'Insumo actualizado correctamente');
+        return redirect()->route('insumos.index')->with('success', 'Libro actualizado correctamente');
     }
 
     public function destroy(Insumo $insumo)
     {
         $insumo->delete();
-        return redirect()->route('insumos.index')->with('success', 'Insumo eliminado');
+        return redirect()->route('insumos.index')->with('success', 'Libro eliminado');
     }
 
     public function bandeja(Request $request)
@@ -88,8 +88,7 @@ class InsumoController extends Controller
 
         $disponibles = $todos->where('estado', 'disponible');
         $prestados = $todos->where('estado', 'prestado');
-        $averiados = $todos->where('estado', 'averiado');
 
-        return view('insumos.bandeja', compact('disponibles', 'prestados', 'averiados', 'nombre', 'fechaInicio', 'fechaFin'));
+        return view('insumos.bandeja', compact('disponibles', 'prestados', 'nombre', 'fechaInicio', 'fechaFin'));
     }
 }

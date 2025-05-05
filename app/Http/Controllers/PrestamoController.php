@@ -48,7 +48,7 @@ class PrestamoController extends Controller
             })->exists();
 
         if ($existeConflicto) {
-            return back()->withErrors(['conflicto' => 'El insumo ya está reservado o prestado en este rango de fechas.']);
+            return back()->withErrors(['conflicto' => 'El libro ya está reservado o prestado en este rango de fechas.']);
         }
 
         Prestamo::create([
