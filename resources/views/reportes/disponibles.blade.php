@@ -25,7 +25,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">No hay insumos disponibles.</td>
+                    <td colspan="5" class="text-center">No hay libros disponibles.</td>
                 </tr>
             @endforelse
         </tbody>
