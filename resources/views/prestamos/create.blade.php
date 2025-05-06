@@ -23,7 +23,7 @@
             <select name="insumo_id" id="insumo_id" class="form-select" required>
                 <option value="">-- Selecciona --</option>
                 @foreach($insumos as $insumo)
-                    <option value="{{ $insumo->id }}">{{ $insumo->nombre }} ({{ $insumo->cantidad }} disponibles)</option>
+                    <option value="{{ $insumo->id }}">{{ $insumo->nombre }}</option>
                 @endforeach
             </select>
         </div>

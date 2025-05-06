@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">📍 Reporte de Insumos Disponibles</h2>
+    <h2 class="mb-4">📍 Reporte de Libros Disponibles</h2>
 
     <table class="table table-bordered table-hover shadow-sm">
         <thead class="table-success">
