@@ -106,7 +106,7 @@
         <h6>📄 Solicitudes de Préstamo</h6>
         <a href="{{ url('/prestamos/create') }}">➕ Crear Préstamo</a>
         <a href="{{ url('/prestamos') }}">🆕 Nuevas Solicitudes</a>
-        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
+        @if(in_array(auth()->user()->rol, ['administrador']))
             <a href="{{ url('/admin/prestamos') }}">🗂️ Aprobación</a>
         @else
             <a class="disabled">🔒 Aprobación</a>
@@ -115,7 +115,7 @@
 
     <div class="sidebar-section">
         <h6>👥 Administración de Usuarios</h6>
-        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
+        @if(in_array(auth()->user()->rol, ['administrador']))
             <a href="{{ route('users.create') }}">👤 Crear Usuario</a>
             <a href="#" onclick="toggleUsuarios()">👥 Mostrar/Ocultar Usuarios</a>
         @else
