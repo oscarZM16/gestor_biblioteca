@@ -17,6 +17,10 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Clasificacion Tematica</th>
+                    <th>Genero Literario</th>
+                    <th>Publico Objetivo</th>
+                    <th>Tipo de Obra</th>
                     <th>Cantidad</th>
                     <th>Estado</th>
                     <th>Acciones</th>
@@ -28,6 +32,10 @@
                         <td>{{ $insumo->id }}</td>
                         <td>{{ $insumo->nombre }}</td>
                         <td>{{ $insumo->descripcion }}</td>
+                        <td>{{ $insumo->clasificacionTematica->nombre ?? 'Sin clasificar' }}</td>
+                        <td>{{ $insumo->generoLiterario->nombre ?? 'Sin clasificar' }}</td>
+                        <td>{{ $insumo->publicoObjetivo->nombre ?? 'Sin clasificar' }}</td>
+                        <td>{{ $insumo->tipoDeObra->nombre ?? 'Sin clasificar' }}</td>
                         <td>{{ $insumo->cantidad }}</td>
                         <td>{{ $insumo->estado }}</td>
                         <td>

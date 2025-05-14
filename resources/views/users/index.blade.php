@@ -125,7 +125,7 @@
 
     <div class="sidebar-section">
         <h6>📊 Generación de Reportes</h6>
-        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
+        @if(in_array(auth()->user()->rol, ['administrador']))
             <a href="{{ route('reportes.insumos') }}">📦 Reporte de Libro</a>
             <a href="{{ route('reportes.prestamos') }}">📁 Reporte de Préstamos</a>
             <a href="{{ route('reportes.disponibles') }}">📍 Libro Disponibles</a>

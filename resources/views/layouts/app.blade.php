@@ -5,23 +5,6 @@
     <title>Biblioteca</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-image: url('{{ asset("images/fondo.jpeg") }}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: rgb(255, 255, 255);
-            padding: 2rem;
-            border-radius: 1rem;
-        }
-    </style>
-
 </head>
 
 <body class="bg-light">

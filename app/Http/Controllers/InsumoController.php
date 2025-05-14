@@ -20,9 +20,16 @@ class InsumoController extends Controller
 
     public function index()
     {
-        $insumos = Insumo::all();
+        $insumos = Insumo::with([
+            'clasificacionTematica', 
+            'generoLiterario', 
+            'publicoObjetivo', 
+            'tipoDeObra'
+        ])->get();
+
         return view('insumos.index', compact('insumos'));
     }
+
 
     public function create()
     {

@@ -27,6 +27,5 @@ class DatabaseSeeder extends Seeder
             'rol' => 'supervisor',
         ]);
 
-        $this->call(AdminVitalicioSeeder::class);
     }
 }
