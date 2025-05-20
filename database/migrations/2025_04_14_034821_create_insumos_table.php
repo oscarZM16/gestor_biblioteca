@@ -24,7 +24,7 @@ class CreateInsumosTable extends Migration
             $table->unsignedBigInteger('clasificaciones_tematicas_id')->nullable();
             $table->unsignedBigInteger('generos_literarios_id')->nullable();
             $table->unsignedBigInteger('publicos_objetivos_id')->nullable();
-            $table->unsignedBigInteger('tipos_de_obras_id')->nullable();
+            $table->unsignedBigInteger('tipos_obras_id')->nullable();
 
             $table->timestamps();
 
