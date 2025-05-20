@@ -25,24 +25,30 @@
                         <td>{{ $p->user->name ?? 'Usuario no disponible' }}</td>
                         <td>{{ $p->insumo->nombre }}</td>
                         <td><strong>{{ ucfirst($p->estado) }}</strong></td>
-                        <td>{{ $p->fecha_inicio }} → {{ $p->fecha_fin }}</td>
+                        <td>{{ $p->fecha_inicio }} <i class="bi bi-arrow-right"></i> {{ $p->fecha_fin }}</td>
                         <td>
                             @if($p->estado === 'pendiente')
                                 <form action="{{ route('prestamos.estado', $p->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     <input type="hidden" name="estado" value="aprobado">
-                                    <button class="btn btn-success btn-sm">Aprobar</button>
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bi bi-check-circle"></i> Aprobar
+                                    </button>
                                 </form>
                                 <form action="{{ route('prestamos.estado', $p->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     <input type="hidden" name="estado" value="rechazado">
-                                    <button class="btn btn-danger btn-sm">Rechazar</button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="bi bi-x-circle"></i> Rechazar
+                                    </button>
                                 </form>
                             @else
                                 <form action="{{ route('prestamos.estado', $p->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     <input type="hidden" name="estado" value="finalizado">
-                                    <button class="btn btn-secondary btn-sm">Finalizar</button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="bi bi-flag"></i> Finalizar
+                                    </button>
                                 </form>
                             @endif
                         </td>
@@ -50,9 +56,10 @@
                 @endforeach
             </tbody>
         </table>
+
         <div class="text-center mt-4">
             <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-                ⬅ Volver al Panel Principal
+                <i class="bi bi-arrow-left"></i> Volver al Panel Principal
             </a>
         </div>
     </div>

@@ -9,14 +9,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('clasificacion_tematica', function (Blueprint $table) {
+        Schema::create('clasificaciones_tematicas', function (Blueprint $table) {
             $table->id(); // id AUTO_INCREMENT
             $table->string('nombre');
             $table->text('descripcion');
             $table->timestamps();
         });
 
-        DB::table('clasificacion_tematica')->insert([
+        DB::table('clasificaciones_tematicas')->insert([
             ['id' => 1, 'nombre' => 'Literatura y ficción', 'descripcion' => 'Obras narrativas imaginarias creadas por autores.'],
             ['id' => 2, 'nombre' => 'Ciencia ficción y fantasía', 'descripcion' => 'Historias con elementos tecnológicos o mágicos en mundos imaginarios.'],
             ['id' => 3, 'nombre' => 'Misterio y suspenso', 'descripcion' => 'Narrativas centradas en resolver enigmas o crímenes.'],
@@ -46,6 +46,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('clasificacion_tematica');
+        Schema::dropIfExists('clasificaciones_tematicas');
     }
 };

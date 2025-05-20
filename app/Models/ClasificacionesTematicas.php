@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ClasificacionTematica extends Model
+class ClasificacionesTematicas extends Model
 {
     protected $fillable = ['nombre'];
 
     // Nombre correcto de la tabla
-    protected $table = 'clasificacion_tematica';
+    protected $table = 'clasificaciones_tematicas';
 }

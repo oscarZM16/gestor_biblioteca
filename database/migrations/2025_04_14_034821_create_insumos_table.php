@@ -21,18 +21,18 @@ class CreateInsumosTable extends Migration
             $table->string('estado')->default('disponible'); // disponible, prestado.
 
             // Relaciones con otras tablas
-            $table->unsignedBigInteger('clasificacion_tematica_id')->nullable();
-            $table->unsignedBigInteger('genero_literario_id')->nullable();
-            $table->unsignedBigInteger('publico_objetivo_id')->nullable();
-            $table->unsignedBigInteger('tipo_de_obra_id')->nullable();
+            $table->unsignedBigInteger('clasificaciones_tematicas_id')->nullable();
+            $table->unsignedBigInteger('generos_literarios_id')->nullable();
+            $table->unsignedBigInteger('publicos_objetivos_id')->nullable();
+            $table->unsignedBigInteger('tipos_de_obras_id')->nullable();
 
             $table->timestamps();
 
             // Definición de claves foráneas
-            $table->foreign('clasificacion_tematica_id')->references('id')->on('clasificacion_tematica')->onDelete('set null');
-            $table->foreign('genero_literario_id')->references('id')->on('genero_literario')->onDelete('set null');
-            $table->foreign('publico_objetivo_id')->references('id')->on('publico_objetivo')->onDelete('set null');
-            $table->foreign('tipo_de_obra_id')->references('id')->on('tipo_obra')->onDelete('set null');
+            $table->foreign('clasificaciones_tematicas_id')->references('id')->on('clasificaciones_tematicas')->onDelete('set null');
+            $table->foreign('generos_literarios_id')->references('id')->on('generos_literarios')->onDelete('set null');
+            $table->foreign('publicos_objetivos_id')->references('id')->on('publicos_objetivos')->onDelete('set null');
+            $table->foreign('tipos_obras_id')->references('id')->on('tipos_obras')->onDelete('set null');
         });
     }
 

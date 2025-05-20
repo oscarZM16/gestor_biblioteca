@@ -9,14 +9,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tipo_obra', function (Blueprint $table) {
+        Schema::create('tipos_obras', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
             $table->timestamps();
         });
 
-        DB::table('tipo_obra')->insert([
+        DB::table('tipos_obras')->insert([
             ['id' => 1, 'nombre' => 'Ficción', 'descripcion' => 'Obras con contenido imaginario.'],
             ['id' => 2, 'nombre' => 'No ficción', 'descripcion' => 'Libros basados en hechos reales.'],
             ['id' => 3, 'nombre' => 'Documental', 'descripcion' => 'Textos que documentan la realidad con evidencia.'],
@@ -28,6 +28,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('tipo_obra');
+        Schema::dropIfExists('tipos_obras');
     }
 };

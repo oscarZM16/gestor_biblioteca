@@ -29,6 +29,46 @@
         </div>
 
         <div class="mb-3">
+            <label for="clasificaciones_tematicas_id" class="form-label">Clasificacion Tematica</label>
+            <select name="clasificaciones_tematicas_id" id="clasificaciones_tematicas_id" class="form-select" required>
+                <option value="">-Selecciona-</option>
+                @foreach($clasificaciones_tematicas as $clasificacion_tematica)
+                    <option value="{{ $clasificacion_tematica->id }}">{{ $clasificacion_tematica->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="generos_literarios_id" class="form-label">Genero Literario</label>
+            <select name="generos_literarios_id" id="generos_literarios_id" class="form-select" required>
+                <option value="">-Selecciona-</option>
+                @foreach($generos_literarios as $genero_literario)
+                    <option value="{{ $genero_literario->id }}">{{ $genero_literario->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="publicos_objetivos_id" class="form-label">Publico Objetivo</label>
+            <select name="publicos_objetivos_id" id="publicos_objetivos_id" class="form-select" required>
+                <option value="">-Selecciona-</option>
+                @foreach($publicos_objetivos as $publico_objetivo)
+                    <option value="{{ $publico_objetivo->id }}">{{ $publico_objetivo->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="tipos_obras_id" class="form-label">Tipo de Obra</label>
+            <select name="tipos_obras_id" id="tipos_obras_id" class="form-select" required>
+                <option value="">-Selecciona-</option>
+                @foreach($tipos_obras as $tipo_obra)
+                    <option value="{{ $tipo_obra->id }}">{{ $tipo_obra->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="cantidad" class="form-label">Cantidad</label>
             <input type="number" name="cantidad" id="cantidad" class="form-control" min="1" required>
         </div>
@@ -44,11 +84,11 @@
         <button type="submit" class="btn btn-success">Guardar Libro</button>
         <a href="{{ route('insumos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
+
     <div class="text-center mt-4">
         <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            ⬅ Volver al Panel Principal
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
         </a>
     </div>
-    
 </div>
 @endsection

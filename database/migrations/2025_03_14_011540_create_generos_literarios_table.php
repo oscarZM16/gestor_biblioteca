@@ -9,14 +9,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('genero_literario', function (Blueprint $table) {
+        Schema::create('generos_literarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
             $table->timestamps();
         });
 
-        DB::table('genero_literario')->insert([
+        DB::table('generos_literarios')->insert([
             ['id' => 1, 'nombre' => 'Narrativa', 'descripcion' => 'Prosa literaria que cuenta historias, como novelas y cuentos.'],
             ['id' => 2, 'nombre' => 'Lírico', 'descripcion' => 'Obras en verso que expresan emociones, como la poesía.'],
             ['id' => 3, 'nombre' => 'Dramático', 'descripcion' => 'Textos destinados a ser representados en teatro.'],
@@ -28,6 +28,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('genero_literario');
+        Schema::dropIfExists('generos_literarios');
     }
 };

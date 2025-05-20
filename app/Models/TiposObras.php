@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoObra extends Model
+class TiposObras extends Model
 {
     protected $fillable = ['nombre'];
-    protected $table = 'tipo_obra';
+    protected $table = 'tipos_obras';
 }

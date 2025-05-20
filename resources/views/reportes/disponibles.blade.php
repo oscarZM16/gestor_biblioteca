@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">📍 Reporte de Libros Disponibles</h2>
+    <h2 class="mb-4"><i class="bi bi-journal-bookmark"></i> Reporte de Libros Disponibles</h2>
 
     <table class="table table-bordered table-hover shadow-sm">
         <thead class="table-success">
@@ -33,7 +33,7 @@
 
     <div class="text-center mt-4">
         <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            ⬅ Volver al Panel Principal
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
         </a>
     </div>
 </div>

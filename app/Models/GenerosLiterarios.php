@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PublicoObjetivo extends Model
+class GenerosLiterarios extends Model
 {
     protected $fillable = ['nombre'];
-    protected $table = 'publico_objetivo';
+    protected $table = 'generos_literarios';
 }

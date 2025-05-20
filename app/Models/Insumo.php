@@ -14,31 +14,31 @@ class Insumo extends Model
         'descripcion',
         'cantidad',
         'estado',
-        'clasificacion_tematica_id',
-        'genero_literario_id',
-        'publico_objetivo_id',
-        'tipo_de_obra_id',
+        'clasificaciones_tematicas_id',
+        'generos_literarios_id',
+        'publicos_objetivos_id',
+        'tipos_obras_id',
     ];
 
     // Relaciones con otras tablas
 
-    public function clasificacionTematica()
+    public function clasificacionesTematicas()
     {
-        return $this->belongsTo(ClasificacionTematica::class, 'clasificacion_tematica_id');
+        return $this->belongsTo(ClasificacionesTematicas::class, 'clasificaciones_tematicas_id');
     }
 
-    public function generoLiterario()
+    public function generosLiterarios()
     {
-        return $this->belongsTo(GeneroLiterario::class, 'genero_literario_id');
+        return $this->belongsTo(GenerosLiterarios::class, 'generos_literarios_id');
     }
 
-    public function publicoObjetivo()
+    public function publicosObjetivos()
     {
-        return $this->belongsTo(PublicoObjetivo::class, 'publico_objetivo_id');
+        return $this->belongsTo(PublicosObjetivos::class, 'publicos_objetivos_id');
     }
 
-    public function tipoDeObra()
+    public function tiposDeObras()
     {
-        return $this->belongsTo(TipoObra::class, 'tipo_de_obra_id');
+        return $this->belongsTo(TiposObras::class, 'tipos_obras_id');
     }
 }

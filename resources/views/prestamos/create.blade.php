@@ -43,7 +43,7 @@
     </form>
     <div class="text-center mt-4">
         <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            ⬅ Volver al Panel Principal
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
         </a>
     </div>
 </div>

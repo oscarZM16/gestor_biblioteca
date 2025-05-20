@@ -8,7 +8,9 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('prestamos.create') }}" class="btn btn-primary mb-3">+ Solicitar Préstamo</a>
+    <a href="{{ route('prestamos.create') }}" class="btn btn-primary mb-3">
+        <i class="bi bi-plus-lg"></i> Solicitar Préstamo
+    </a>
 
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
@@ -35,9 +37,10 @@
                 @endforelse
             </tbody>
         </table>
+
         <div class="text-center mt-4">
             <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-                ⬅ Volver al Panel Principal
+                <i class="bi bi-arrow-left"></i> Volver al Panel Principal
             </a>
         </div>
     </div>
