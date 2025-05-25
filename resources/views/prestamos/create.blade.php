@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">Solicitar Préstamo</h2>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h2 class="mb-4" >Crear Prestamo</h2>
+        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
+        </a>
+    </div>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -21,7 +26,7 @@
         <div class="mb-3">
             <label for="insumo_id" class="form-label">Seleccionar Libro</label>
             <select name="insumo_id" id="insumo_id" class="form-select" required>
-                <option value="">-- Selecciona --</option>
+                <option value="">- Selecciona -</option>
                 @foreach($insumos as $insumo)
                     <option value="{{ $insumo->id }}">{{ $insumo->nombre }}</option>
                 @endforeach
@@ -41,10 +46,5 @@
         <button type="submit" class="btn btn-success">Enviar Solicitud</button>
         <a href="{{ route('prestamos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
-    <div class="text-center mt-4">
-        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
-        </a>
-    </div>
 </div>
 @endsection

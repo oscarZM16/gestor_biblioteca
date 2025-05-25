@@ -24,6 +24,8 @@
                     <th>Publico Objetivo</th>
                     <th>Tipo de Obra</th>
                     <th>Cantidad</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Cantidad Prestada</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -39,6 +41,8 @@
                         <td>{{ $insumo->publicosObjetivos->nombre ?? 'Sin clasificar' }}</td>
                         <td>{{ $insumo->tiposDeObras->nombre ?? 'Sin clasificar' }}</td>
                         <td>{{ $insumo->cantidad }}</td>
+                        <td>{{ $insumo->cantidad_disponible }}</td>
+                        <td>{{ $insumo->cantidad_prestada }}</td>
                         <td>{{ $insumo->estado }}</td>
                         <td>
                             <a href="{{ route('insumos.edit', $insumo) }}" class="btn btn-sm btn-warning">

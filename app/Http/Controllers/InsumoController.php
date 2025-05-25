@@ -28,7 +28,8 @@ class InsumoController extends Controller
             'clasificacionesTematicas', 
             'generosLiterarios', 
             'publicosObjetivos', 
-            'tiposDeObras'
+            'tiposDeObras',
+            'prestamos',
         ])->get();
 
         return view('insumos.index', compact('insumos'));
@@ -128,7 +129,6 @@ class InsumoController extends Controller
         $disponibles = $todos->where('estado', 'disponible');
         $prestados = $todos->where('estado', 'prestado');
 
-        // Cargar las listas de filtros para la vista
         $clasificaciones_tematicas = ClasificacionesTematicas::all();
         $generos_literarios = GenerosLiterarios::all();
         $publicos_objetivos = PublicosObjetivos::all();
