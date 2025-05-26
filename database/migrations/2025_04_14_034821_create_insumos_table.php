@@ -18,13 +18,15 @@ class CreateInsumosTable extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->integer('cantidad')->default(1);
+            $table->integer('cantidad')->default(0);
+            $table->integer('cantidad')->default(0);
             $table->string('estado')->default('disponible'); // disponible, prestado.
 
             // Relaciones con otras tablas
             $table->unsignedBigInteger('clasificaciones_tematicas_id')->nullable();
             $table->unsignedBigInteger('generos_literarios_id')->nullable();
             $table->unsignedBigInteger('publicos_objetivos_id')->nullable();
-            $table->unsignedBigInteger('tipos_de_obras_id')->nullable();
+            $table->unsignedBigInteger('tipos_obras_id')->nullable();
 
             $table->timestamps();
 
