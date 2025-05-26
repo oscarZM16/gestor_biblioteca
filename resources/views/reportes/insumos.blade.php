@@ -2,9 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">
-        <i class="bi bi-book"></i> Reporte de Libros
-    </h2>
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">
+            <i class="bi bi-book"></i> Reporte de Libros
+        </h2>
+        <div>
+            <a href="{{ route('pdf.insumos') }}" class="btn bg-danger min">Pdf</a>
+            <a href="{{ route('ruta.libros.export') }}" class="btn bg-success min">Excel</a>
+        </div>
+    </div>
+    
 
     <table class="table table-bordered table-hover shadow-sm">
         <thead class="table-dark">

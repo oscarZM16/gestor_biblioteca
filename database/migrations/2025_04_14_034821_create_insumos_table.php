@@ -18,6 +18,8 @@ class CreateInsumosTable extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->integer('cantidad')->default(1);
+            $table->integer('cantidad')->default(0);
+            $table->integer('cantidad')->default(0);
             $table->string('estado')->default('disponible'); // disponible, prestado.
 
             // Relaciones con otras tablas

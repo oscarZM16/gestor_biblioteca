@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
@@ -31,7 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/bandeja', [InsumoController::class, 'bandeja'])->name('insumos.bandeja');
     
     Route::get('/reportes/insumos', [ReporteController::class, 'reporteInsumos'])->name('reportes.insumos');
+    Route::get('/reportes/insumos/pdf', [ReporteController::class, 'pdfInsumos'])->name('pdf.insumos');
     Route::get('/reportes/prestamos', [ReporteController::class, 'reportePrestamos'])->name('reportes.prestamos');
+    Route::get('reportes/prestamos/pdf',[ReporteController::class,'pdfPrestamos'])->name('pdf.prestamos');
+    Route::get('reportes/prestamos/excel',[ExportController::class, 'index'])->name('excel.prestamos');
+    Route::get('/export/prestamos',[ExportController::class, 'export'])->name('ruta.export');
+    Route::get('reportes/libros/excel',[ExportController::class, 'mostrarLibros'])->name('excel.libros');
+    Route::get('/export/libros',[ExportController::class, 'exportLibros'])->name('ruta.libros.export');
     Route::get('/reportes/disponibles', [ReporteController::class, 'reporteDisponibles'])->name('reportes.disponibles');
 
     Route::get('/prestamos', [PrestamoController::class, 'index'])->name('prestamos.index');
