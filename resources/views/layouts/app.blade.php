@@ -81,7 +81,6 @@
     </svg>
 
     <div class="content-wrapper">
-        <!-- Nota: quitar bg-primary para que el color del navbar se tome del CSS -->
         <nav class="navbar navbar-expand-lg navbar-dark mb-4 shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><i class="bi bi-journal-bookmark me-2"></i> Biblioteca municipal Jorge Eliecer Gaitán</a>

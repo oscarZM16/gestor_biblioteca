@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="mb-4">Crear Usuario</h2>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h2 class="mb-4" >Crear Usuario</h2>
+        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
+        </a>
+    </div>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -52,9 +57,4 @@
         <button type="submit" class="btn btn-primary">Crear usuario</button>
         <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
-    <div class="text-center mt-4">
-        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
-        </a>
-    </div>
 @endsection

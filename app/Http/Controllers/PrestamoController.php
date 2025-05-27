@@ -35,20 +35,25 @@ class PrestamoController extends Controller
             'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
         ]);
 
-        // Validar que no haya préstamos aprobados que se crucen en fechas
-        $existeConflicto = Prestamo::where('insumo_id', $request->insumo_id)
-            ->where('estado', 'aprobado')
-            ->where(function($query) use ($request) {
-                $query->whereBetween('fecha_inicio', [$request->fecha_inicio, $request->fecha_fin])
-                      ->orWhereBetween('fecha_fin', [$request->fecha_inicio, $request->fecha_fin])
-                      ->orWhere(function($q) use ($request) {
-                          $q->where('fecha_inicio', '<=', $request->fecha_inicio)
-                            ->where('fecha_fin', '>=', $request->fecha_fin);
-                      });
-            })->exists();
+        // Obtener el insumo
+        $insumo = Insumo::findOrFail($request->insumo_id);
 
-        if ($existeConflicto) {
-            return back()->withErrors(['conflicto' => 'El libro ya está reservado o prestado en este rango de fechas.']);
+        // Solo validar conflicto de fechas si no hay unidades disponibles
+        if ($insumo->cantidad_disponible <= 0) {
+            $existeConflicto = Prestamo::where('insumo_id', $request->insumo_id)
+                ->where('estado', 'aprobado')
+                ->where(function($query) use ($request) {
+                    $query->whereBetween('fecha_inicio', [$request->fecha_inicio, $request->fecha_fin])
+                        ->orWhereBetween('fecha_fin', [$request->fecha_inicio, $request->fecha_fin])
+                        ->orWhere(function($q) use ($request) {
+                            $q->where('fecha_inicio', '<=', $request->fecha_inicio)
+                                ->where('fecha_fin', '>=', $request->fecha_fin);
+                        });
+                })->exists();
+
+            if ($existeConflicto) {
+                return back()->withErrors(['conflicto' => 'El libro ya está reservado o prestado en este rango de fechas.']);
+            }
         }
 
         Prestamo::create([
@@ -61,6 +66,7 @@ class PrestamoController extends Controller
 
         return redirect()->route('prestamos.index')->with('success', 'Solicitud enviada correctamente');
     }
+
 
     // SOLO PARA ADMINISTRADORES
 
@@ -77,19 +83,46 @@ class PrestamoController extends Controller
             'estado' => 'required|in:aprobado,rechazado,finalizado'
         ]);
 
-        $prestamo->estado = $request->estado;
-        $prestamo->save();
+        $insumo = $prestamo->insumo;
 
         if ($request->estado === 'aprobado') {
-            $prestamo->insumo->estado = 'prestado';
-            $prestamo->insumo->save();
-        }
+            // Contar préstamos aprobados activos del insumo
+            $prestamosActivos = Prestamo::where('insumo_id', $insumo->id)
+                ->where('estado', 'aprobado')
+                ->count();
 
-        if ($request->estado === 'finalizado') {
-            $prestamo->insumo->estado = 'disponible';
-            $prestamo->insumo->save();
+            if ($insumo->cantidad <= $prestamosActivos) {
+                return back()->withErrors(['stock' => 'No hay ejemplares disponibles de este libro para aprobar el préstamo.']);
+            }
+
+            // Aprobar el préstamo
+            $prestamo->estado = 'aprobado';
+            $prestamo->save();
+
+            // Si después de aprobar ya no hay más disponibles, cambiar estado a 'prestado'
+            if ($insumo->cantidad_disponible <= 0) {
+                $insumo->estado = 'prestado';
+                $insumo->save();
+            }
+
+        } elseif ($request->estado === 'finalizado') {
+            // Finalizar el préstamo
+            $prestamo->estado = 'finalizado';
+            $prestamo->save();
+
+            // Si ahora hay disponibles, cambiar estado del insumo a 'disponible'
+            if ($insumo->cantidad_disponible > 0) {
+                $insumo->estado = 'disponible';
+                $insumo->save();
+            }
+
+        } else {
+            // Para estado 'rechazado' u otros
+            $prestamo->estado = $request->estado;
+            $prestamo->save();
         }
 
         return back()->with('success', 'Estado actualizado correctamente');
     }
+
 }

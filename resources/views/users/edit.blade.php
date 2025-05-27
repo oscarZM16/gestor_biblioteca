@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="mb-4">Editar Usuario</h2>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h2 class="mb-4" >Editar Usuario</h2>
+        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
+        </a>
+    </div>
 
     @if ($errors->any())
         <div class="alert alert-danger">
