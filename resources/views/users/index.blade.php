@@ -147,6 +147,16 @@
     </div>
 
     <div class="sidebar-section">
+        <h6><i class="bi bi-clipboard-data me-2"></i> Generación de Multas</h6>
+        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
+            <a href="{{ route('multa.prestamo') }}"><i class="bi bi-book me-2"></i> Ver multas</a>
+            
+        @else
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Acceso a Reportes</a>
+        @endif
+    </div>
+
+    <div class="sidebar-section">
         <h6><i class="bi bi-clipboard-data me-2"></i> Generación de Reportes</h6>
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
             <a href="{{ route('reportes.insumos') }}"><i class="bi bi-book me-2"></i> Reporte de Libros</a>

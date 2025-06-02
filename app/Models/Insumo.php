@@ -52,14 +52,14 @@ class Insumo extends Model
     {
         return $this->prestamos()
             ->where('estado', 'aprobado')
-            ->where('fecha_inicio', '<=', now())
-            ->where('fecha_fin', '>=', now())
+            ->where('fecha_inicio')
+            // ->where('fecha_fin', '>=', now())
             ->count();
     }
 
     // Accesor: cantidad disponible
     public function getCantidadDisponibleAttribute()
     {
-        return $this->cantidad - $this->cantidad_prestada;
+        return $this->cantidad - $this->prestamos->sum('cantidad_prstada');
     }
 }

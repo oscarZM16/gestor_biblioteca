@@ -42,7 +42,7 @@
                         <td>{{ $insumo->tiposDeObras->nombre ?? 'Sin clasificar' }}</td>
                         <td>{{ $insumo->cantidad }}</td>
                         <td>{{ $insumo->cantidad_disponible }}</td>
-                        <td>{{ $insumo->cantidad_prestada }}</td>
+                        <td>{{ $insumo->prestamos->sum('cantidad_prstada') }}</td>
                         <td>{{ $insumo->estado }}</td>
                         <td>
                             <a href="{{ route('insumos.edit', $insumo) }}" class="btn btn-sm btn-warning">

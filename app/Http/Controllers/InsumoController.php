@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClasificacionesTematicas;
 use App\Models\GenerosLiterarios;
 use App\Models\Insumo;
+use App\Models\Prestamo;
 use App\Models\PublicosObjetivos;
 use App\Models\TiposObras;
 use Illuminate\Http\Request;
@@ -32,6 +33,13 @@ class InsumoController extends Controller
             'prestamos',
         ])->get();
 
+        foreach($insumos as $insumo){
+            if($insumo->cantidad_disponible == 0){
+                $insumo->estado = 'agotado';
+                $insumo->save();
+            }
+        
+        }
         return view('insumos.index', compact('insumos'));
     }
 
@@ -61,6 +69,7 @@ class InsumoController extends Controller
         ]);
 
         Insumo::create($request->all());
+
 
         return redirect()->route('insumos.index')->with('success', 'Libro creado correctamente');
     }

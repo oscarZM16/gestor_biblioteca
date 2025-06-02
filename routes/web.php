@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InsumoController;
+use App\Http\Controllers\MultaController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ReporteController;
 
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/prestamos/create', [PrestamoController::class, 'create'])->name('prestamos.create');
     Route::post('/prestamos', [PrestamoController::class, 'store'])->name('prestamos.store');
     Route::get('/admin/prestamos', [PrestamoController::class, 'adminIndex'])->name('prestamos.admin');
-    Route::post('/admin/prestamos/{prestamo}/estado', [PrestamoController::class, 'cambiarEstado'])->name('prestamos.estado');
+    Route::post('/prestamos/{prestamo}/finalizado', [PrestamoController::class, 'cambiarEstado'])->name('prestamos.estado');
+    Route::get('/prestamos/multas',[MultaController::class, 'index'])->name('multa.prestamo');
+    Route::post('/filtrar/prestamos',[MultaController::class,'filtrar'])->name('filtrar.prestamos');
 });
 

@@ -25,7 +25,7 @@
                         <td>{{ $p->user->name ?? 'Usuario no disponible' }}</td>
                         <td>{{ $p->insumo->nombre }}</td>
                         <td><strong>{{ ucfirst($p->estado) }}</strong></td>
-                        <td>{{ $p->fecha_inicio }} <i class="bi bi-arrow-right"></i> {{ $p->fecha_fin }}</td>
+                        <td>{{ $p->fecha_inicio }} <i class="bi bi-arrow-right"></i>{{ $p->fecha_fin }}</td>
                         <td>
                             @if($p->estado === 'pendiente')
                                 @if($p->insumo->cantidad_disponible > 0)

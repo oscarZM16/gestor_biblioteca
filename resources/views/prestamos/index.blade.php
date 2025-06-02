@@ -7,6 +7,9 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    @if (session('info'))
+        <div class="alert alert-info">{{ session('info') }}</div>    
+    @endif
 
     <a href="{{ route('prestamos.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-lg"></i> Solicitar Préstamo
@@ -17,22 +20,31 @@
             <thead>
                 <tr>
                     <th>Libro</th>
+                    <th>Cantidad</th>
                     <th>Solicitante</th>
                     <th>Estado</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
+                    <th>Fecha Devolución</th>
                     <th>Solicitado el</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($prestamos as $prestamo)
                     <tr>
                         <td>{{ $prestamo->insumo->nombre }}</td>
-                        <td>{{ $prestamo->user->name }}</td>
+                        <td>{{ $prestamo->cantidad_prstada }}</td>
+                        <td>{{ $prestamo->email_solicitante }}</td>
                         <td>{{ ucfirst($prestamo->estado) }}</td>
                         <td>{{ $prestamo->fecha_inicio }}</td>
-                        <td>{{ $prestamo->fecha_fin }}</td>
+                        <td>{{ $prestamo->fecha_devolucion }}</td>
+                        <td>{{ $prestamo->fecha_entrega}}</td>
                         <td>{{ $prestamo->created_at->format('Y-m-d H:i') }}</td>
+                        <form action="{{ route('prestamos.estado',$prestamo->id) }}" method="post">
+                            @csrf
+                            <td><button onclick="abrirModal()" class="btn btn-outline-dark">Finalizar</button></td>
+                        </form>
                     </tr>
                 @empty
                     <tr><td colspan="5">No has solicitado ningún préstamo aún.</td></tr>
@@ -46,5 +58,11 @@
             </a>
         </div>
     </div>
+    
 </div>
+<script>
+    function abrirModal(){
+        alert('Quiere realizar esta acción?');
+    }
+</script>    
 @endsection
