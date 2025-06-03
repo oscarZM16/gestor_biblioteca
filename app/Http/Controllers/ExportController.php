@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\LibrosExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PrestamosExport;
-use  Maatwebsite\Excel\Facades\Excel;
-use App\Models\Prestamo;
+use App\Exports\LibrosExport;
 
 class ExportController extends Controller
 {
-    public function index(){
-        return view('reportes.excelprestamos');
-    }
-    public function export(){
-        return Excel::download(new PrestamosExport, 'prestamos.xlsx');
-
-    }
-    public function mostrarLibros(){
+    public function mostrarLibros()
+    {
         return view('reportes.excellibros');
     }
-    public function exportLibros(){
-        return Excel::download(new LibrosExport, 'libros.xlsx');
+
+    public function exportLibros(Request $request)
+    {
+        return Excel::download(new LibrosExport($request->all()), 'libros.xlsx');
+    }
+
+    public function index()
+    {
+        return view('reportes.excelprestamos');
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new PrestamosExport($request->all()), 'prestamos.xlsx');
     }
 }

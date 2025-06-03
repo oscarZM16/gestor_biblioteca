@@ -9,7 +9,7 @@ class Prestamo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'insumo_id', 'estado', 'fecha_inicio', 'fecha_fin'];
+    protected $fillable = ['user_id', 'insumo_id','cantidad_prstada', 'estado', 'fecha_inicio','fecha_entrega','fecha_devolucion','multa', 'identificacion_solicitante', 'email_solicitante'];
 
     public function user()
     {

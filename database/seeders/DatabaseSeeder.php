@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Supervisor Juan',
-            'email' => 'juan@empresa.com',
-            'password' => Hash::make('supervisor123'),
-            'rol' => 'supervisor',
+            'name' => 'Luis Angel',
+            'email' => 'luisangel@biblioteca.com',
+            'password' => Hash::make('funcionario'),
+            'rol' => 'funcionario',
         ]);
 
     }

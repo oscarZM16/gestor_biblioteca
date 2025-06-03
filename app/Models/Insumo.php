@@ -21,7 +21,6 @@ class Insumo extends Model
     ];
 
     // Relaciones con otras tablas
-
     public function clasificacionesTematicas()
     {
         return $this->belongsTo(ClasificacionesTematicas::class, 'clasificaciones_tematicas_id');
@@ -40,5 +39,27 @@ class Insumo extends Model
     public function tiposDeObras()
     {
         return $this->belongsTo(TiposObras::class, 'tipos_obras_id');
+    }
+
+    // Relación con préstamos
+    public function prestamos()
+    {
+        return $this->hasMany(Prestamo::class, 'insumo_id');
+    }
+
+    // Accesor: cantidad prestada actualmente (aprobados y en curso)
+    public function getCantidadPrestadaAttribute()
+    {
+        return $this->prestamos()
+            ->where('estado', 'aprobado')
+            ->where('fecha_inicio')
+            // ->where('fecha_fin', '>=', now())
+            ->count();
+    }
+
+    // Accesor: cantidad disponible
+    public function getCantidadDisponibleAttribute()
+    {
+        return $this->cantidad - $this->prestamos->sum('cantidad_prstada');
     }
 }

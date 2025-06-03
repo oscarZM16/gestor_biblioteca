@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestamo;
 use App\Models\Insumo;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +22,8 @@ class PrestamoController extends Controller
 
     public function create()
     {
-        // Mostrar todos los insumos
-        $insumos = Insumo::all();
+        // Mostrar todos los libros que están disponibles
+        $insumos = Insumo::where('estado','disponible')->get();
 
         return view('prestamos.create', compact('insumos'));
     }
@@ -31,65 +32,68 @@ class PrestamoController extends Controller
     {
         $request->validate([
             'insumo_id' => 'required|exists:insumos,id',
+            'cantidad' => 'required',
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'fecha_fin' => 'required',
+            'identificacion_s' => 'required',
+            'email_s' => 'required'
+            
         ]);
 
-        // Validar que no haya préstamos aprobados que se crucen en fechas
-        $existeConflicto = Prestamo::where('insumo_id', $request->insumo_id)
-            ->where('estado', 'aprobado')
-            ->where(function($query) use ($request) {
-                $query->whereBetween('fecha_inicio', [$request->fecha_inicio, $request->fecha_fin])
-                      ->orWhereBetween('fecha_fin', [$request->fecha_inicio, $request->fecha_fin])
-                      ->orWhere(function($q) use ($request) {
-                          $q->where('fecha_inicio', '<=', $request->fecha_inicio)
-                            ->where('fecha_fin', '>=', $request->fecha_fin);
-                      });
-            })->exists();
-
-        if ($existeConflicto) {
-            return back()->withErrors(['conflicto' => 'El libro ya está reservado o prestado en este rango de fechas.']);
-        }
-
-        Prestamo::create([
-            'user_id' => Auth::id(),
-            'insumo_id' => $request->insumo_id,
-            'fecha_inicio' => $request->fecha_inicio,
-            'fecha_fin' => $request->fecha_fin,
-            'estado' => 'pendiente'
-        ]);
-
-        return redirect()->route('prestamos.index')->with('success', 'Solicitud enviada correctamente');
+        
+        $insumo = Insumo::find($request->insumo_id);
+        
+        $resta = $insumo->cantidad - $request->cantidad ;
+        if($resta >= 0){
+            
+            Prestamo::create([
+                'user_id' => Auth::id(),
+                'insumo_id' => $request->insumo_id,
+                'cantidad_prstada' => $request->cantidad,
+                'fecha_inicio' => $request->fecha_inicio,
+                'fecha_devolucion' => $request->fecha_fin,
+                'estado' => 'prestado',
+                'identificacion_solicitante' => $request->identificacion_s,
+                'email_solicitante' => $request->email_s
+                
+            ]);
+            
+            return redirect()->route('prestamos.index')->with('success', 'Libro prestado');
+         
+        }else{
+            
+            return redirect()->route('prestamos.create')->with('error','El libro se agotó');
+            }
     }
+
 
     // SOLO PARA ADMINISTRADORES
 
-    public function adminIndex()
-    {
-        // Ver todas las solicitudes de todos los usuarios
-        $prestamos = Prestamo::with(['user', 'insumo'])->orderBy('created_at', 'desc')->get();
-        return view('prestamos.admin', compact('prestamos'));
-    }
+    // public function adminIndex(){
+    //     // Ver todas las solicitudes de todos los usuarios
+    //     $prestamos = Prestamo::with(['user', 'insumo'])->orderBy('created_at', 'desc')->get();
+    //     return view('prestamos.index', compact('prestamos'));
+    // }
 
-    public function cambiarEstado(Request $request, Prestamo $prestamo)
-    {
-        $request->validate([
-            'estado' => 'required|in:aprobado,rechazado,finalizado'
-        ]);
-
-        $prestamo->estado = $request->estado;
-        $prestamo->save();
-
-        if ($request->estado === 'aprobado') {
-            $prestamo->insumo->estado = 'prestado';
-            $prestamo->insumo->save();
+    public function cambiarEstado($id){
+        if (!in_array(Auth::user()->rol, ['administrador','funcionario'])) {
+            abort(403, 'Acceso no autorizado');
         }
-
-        if ($request->estado === 'finalizado') {
-            $prestamo->insumo->estado = 'disponible';
-            $prestamo->insumo->save();
+        $prestamos = Prestamo::findOrFail($id);
+        if($prestamos->estado == 'devuelto'){
+            return back()->with('info','esta acción ya se efectuó.');
         }
+        elseif($prestamos->estado = 'prestado'){
+            $prestamos->fecha_entrega = now();
+            $prestamos->estado = 'devuelto';
+            $prestamos->save();
+        }
+         
 
-        return back()->with('success', 'Estado actualizado correctamente');
+        return redirect()->route('prestamos.index')->with('success', 'Prestamo finalizado');
     }
+    
+
+
+
 }
