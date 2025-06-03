@@ -60,6 +60,7 @@ class Insumo extends Model
     // Accesor: cantidad disponible
     public function getCantidadDisponibleAttribute()
     {
-        return $this->cantidad - $this->prestamos->sum('cantidad_prstada');
+        $cantidad_disponible = $this->cantidad - $this->prestamos->sum('cantidad_prstada');
+        return max(0, $cantidad_disponible);
     }
 }

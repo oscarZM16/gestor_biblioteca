@@ -10,9 +10,11 @@ use Carbon\Carbon;
 class MultaController extends Controller
 {
     public function index(){
-         $prestamos = Prestamo::all();
+        $prestamos = Prestamo::all();
         foreach ($prestamos as $prestamo) {
-            $prestamo->multa = $this->calcularmulta($prestamo);
+            $multa = $this->calcularmulta($prestamo);
+            $prestamo->multa = $multa;
+            $prestamo->save();
         }
         return view('multas.prestamos', compact('prestamos'));
     }
@@ -28,7 +30,7 @@ class MultaController extends Controller
     }
     public function calcularmulta($prestamos){
         $multa = 0;
-        $precio = 1200;
+        $precio =5;
 
         $estado = $prestamos->estado;
         $fecha_fin = Carbon::parse($prestamos->fecha_devolucion);

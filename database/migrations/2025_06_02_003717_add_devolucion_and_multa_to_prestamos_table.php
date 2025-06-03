@@ -16,7 +16,7 @@ class AddDevolucionAndMultaToPrestamosTable extends Migration
         Schema::table('prestamos', function (Blueprint $table) {
             $table->date('fecha_entrega')->nullable()->after('fecha_inicio');
             $table->date('fecha_devolucion')->nullable()->after('fecha_entrega');
-            $table->decimal('multa', 8, 2)->default(0)->after('fecha_devolucion');
+            $table->decimal('multa', 15, 2)->default(0)->after('fecha_devolucion');
         });
     }
 

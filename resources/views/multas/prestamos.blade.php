@@ -38,7 +38,9 @@
                     <tr>
                         <td>{{ $prestamo->insumo->nombre }}</td>
                         <td>{{ $prestamo->email_solicitante }}</td>
-                        <td>{{ $prestamo->multa }}</td>
+                        <td>{{ '$' . number_format($prestamo->multa, 2, ',', '.') }}</td>
+
+
                         
                     </tr>
                     @endif

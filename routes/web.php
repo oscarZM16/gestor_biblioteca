@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ExportController;
+use App\Mail\MultaMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
@@ -9,6 +11,8 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\MultaController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ReporteController;
+use App\Models\Prestamo;
+use App\Notifications\Multa;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,5 +53,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/prestamos/{prestamo}/finalizado', [PrestamoController::class, 'cambiarEstado'])->name('prestamos.estado');
     Route::get('/prestamos/multas',[MultaController::class, 'index'])->name('multa.prestamo');
     Route::post('/filtrar/prestamos',[MultaController::class,'filtrar'])->name('filtrar.prestamos');
+
+    Route::get('/enviar-multas', function(){
+        $prestamos = Prestamo::with('insumo')->where('multa', '>', 0)->get();
+        foreach($prestamos as $prestamo ){
+            if($prestamo->email_solicitante){
+                Mail::to($prestamo->email_solicitante)->send(new MultaMail($prestamo));
+            }
+        }
+        return 'Correos enviados.';
+    });
+
+    
 });
 
