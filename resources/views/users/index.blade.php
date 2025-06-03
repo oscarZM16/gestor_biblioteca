@@ -128,11 +128,6 @@
         <h6><i class="bi bi-journal-arrow-down me-2"></i> Solicitudes de Préstamo</h6>
         <a href="{{ url('/prestamos/create') }}"><i class="bi bi-bookmark-plus me-2"></i> Crear Préstamo</a>
         <a href="{{ url('/prestamos') }}"><i class="bi bi-inboxes me-2"></i> Nuevas Solicitudes</a>
-        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
-            <a href="{{ url('/admin/prestamos') }}"><i class="bi bi-check2-square me-2"></i> Aprobación</a>
-        @else
-            <a class="disabled"><i class="bi bi-lock me-2"></i> Aprobación</a>
-        @endif
     </div>
 
     <div class="sidebar-section">
@@ -161,11 +156,21 @@
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
             <a href="{{ route('reportes.libros') }}"><i class="bi bi-book me-2"></i> Reporte de Libros</a>
             <a href="{{ route('reportes.prestamos') }}"><i class="bi bi-journal-check me-2"></i> Reporte de Préstamos</a>
-            <a href="{{ route('reportes.disponibles') }}"><i class="bi bi-bookmark-check me-2"></i> Libros Disponibles</a>
         @else
             <a class="disabled"><i class="bi bi-lock me-2"></i> Acceso a Reportes</a>
         @endif
     </div>
+    <div class="sidebar-section">
+        <h6><i class="bi bi-calendar-event me-2"></i> Administración de Eventos</h6>
+        @if(in_array(auth()->user()->rol, ['administrador']))
+            <a href="{{ route('eventos.create') }}"><i class="bi bi-plus-lg me-2"></i> Crear Evento</a>
+            <a href="{{ route('eventos.index') }}"><i class="bi bi-calendar3-event me-2"></i> Ver Todos los Eventos</a>
+        @else
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Crear Evento</a>
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Lista de Eventos</a>
+        @endif
+    </div>
+
 </div>
 
 
@@ -178,6 +183,8 @@
         </div>
         <h4 class="text-secondary"><i class="bi bi-journal-text me-2"></i>Panel de Administración</h4>
     </div>
+
+    <x-eventos-carousel :eventos="\App\Models\Evento::latest()->take(5)->get()" />
 
     <hr class="mb-4">
 

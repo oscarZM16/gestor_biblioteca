@@ -9,6 +9,7 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\MultaController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\EventoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // 🔒 Rutas protegidas por autenticación
-Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('insumos', InsumoController::class);
     Route::get('/bandeja', [InsumoController::class, 'bandeja'])->name('insumos.bandeja');
@@ -50,5 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/prestamos/{prestamo}/finalizado', [PrestamoController::class, 'cambiarEstado'])->name('prestamos.estado');
     Route::get('/prestamos/multas',[MultaController::class, 'index'])->name('multa.prestamo');
     Route::post('/filtrar/prestamos',[MultaController::class,'filtrar'])->name('filtrar.prestamos');
+
+    Route::resource('eventos', App\Http\Controllers\EventoController::class);
+    Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+
 });
 

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+
     <h2 class="mb-4">Listado de Libros</h2>
 
     @if(session('success'))
@@ -11,6 +12,7 @@
     <a href="{{ route('insumos.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-lg"></i> Agregar Libro
     </a>
+
 
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle">
