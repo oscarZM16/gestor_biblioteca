@@ -147,9 +147,19 @@
     </div>
 
     <div class="sidebar-section">
+        <h6><i class="bi bi-clipboard-data me-2"></i> Generación de Multas</h6>
+        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
+            <a href="{{ route('multa.prestamo') }}"><i class="bi bi-book me-2"></i> Ver multas</a>
+            
+        @else
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Acceso a Reportes</a>
+        @endif
+    </div>
+
+    <div class="sidebar-section">
         <h6><i class="bi bi-clipboard-data me-2"></i> Generación de Reportes</h6>
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
-            <a href="{{ route('reportes.insumos') }}"><i class="bi bi-book me-2"></i> Reporte de Libros</a>
+            <a href="{{ route('reportes.libros') }}"><i class="bi bi-book me-2"></i> Reporte de Libros</a>
             <a href="{{ route('reportes.prestamos') }}"><i class="bi bi-journal-check me-2"></i> Reporte de Préstamos</a>
             <a href="{{ route('reportes.disponibles') }}"><i class="bi bi-bookmark-check me-2"></i> Libros Disponibles</a>
         @else
@@ -229,11 +239,6 @@
                     @endforelse
                 </tbody>
             </table>
-            <div class="text-center mt-4">
-                <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-                    <i class="bi bi-arrow-left"></i> Volver al Panel Principal
-                </a>
-            </div>
         </div>
     </div>
 </div>

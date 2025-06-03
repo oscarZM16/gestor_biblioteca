@@ -17,9 +17,11 @@ class CreatePrestamosTable extends Migration
         $table->id();
         $table->foreignId('user_id')->constrained()->onDelete('cascade'); // funcionario que hace el préstamo
         $table->foreignId('insumo_id')->constrained()->onDelete('cascade'); // insumo prestado
-        $table->enum('estado', ['pendiente', 'aprobado', 'rechazado', 'finalizado'])->default('pendiente');
+        $table->integer('cantidad_prstada')->default(0);
+        $table->enum('estado', ['libre','prestado', 'devuelto'])->default('libre');
         $table->date('fecha_inicio')->nullable();
-        $table->date('fecha_fin')->nullable();
+        $table->string('identificacion_solicitante')->nullable();
+        $table->string('email_solicitante')->nullable();
         $table->timestamps();
     });
 }

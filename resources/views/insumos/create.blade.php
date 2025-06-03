@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">Agregar Libro</h2>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <h2 class="mb-4" >Crear Libro</h2>
+        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
+            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
+        </a>
+    </div>
+
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -84,11 +90,5 @@
         <button type="submit" class="btn btn-success">Guardar Libro</button>
         <a href="{{ route('insumos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
-
-    <div class="text-center mt-4">
-        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">
-            <i class="bi bi-arrow-left"></i> Volver al Panel Principal
-        </a>
-    </div>
 </div>
 @endsection
