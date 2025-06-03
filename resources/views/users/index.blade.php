@@ -160,6 +160,17 @@
             <a class="disabled"><i class="bi bi-lock me-2"></i> Acceso a Reportes</a>
         @endif
     </div>
+    <div class="sidebar-section">
+        <h6><i class="bi bi-calendar-event me-2"></i> Administración de Eventos</h6>
+        @if(in_array(auth()->user()->rol, ['administrador']))
+            <a href="{{ route('eventos.create') }}"><i class="bi bi-plus-lg me-2"></i> Crear Evento</a>
+            <a href="{{ route('eventos.index') }}"><i class="bi bi-calendar3-event me-2"></i> Ver Todos los Eventos</a>
+        @else
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Crear Evento</a>
+            <a class="disabled"><i class="bi bi-lock me-2"></i> Lista de Eventos</a>
+        @endif
+    </div>
+
 </div>
 
 
@@ -172,6 +183,8 @@
         </div>
         <h4 class="text-secondary"><i class="bi bi-journal-text me-2"></i>Panel de Administración</h4>
     </div>
+
+    <x-eventos-carousel :eventos="\App\Models\Evento::latest()->take(5)->get()" />
 
     <hr class="mb-4">
 
