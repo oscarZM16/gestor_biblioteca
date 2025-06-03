@@ -46,11 +46,22 @@
         }
 
         .bg-overlay {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        background-color: rgb(255, 255, 255);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    /* Responsive padding */
+    @media (max-width: 768px) {
+        .bg-overlay {
+            padding: 1rem;
         }
+    }
+
 
         .navbar {
             background-color: #000000;

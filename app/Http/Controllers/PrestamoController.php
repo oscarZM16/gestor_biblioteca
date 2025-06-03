@@ -88,7 +88,6 @@ class PrestamoController extends Controller
             $prestamos->estado = 'devuelto';
             $prestamos->save();
         }
-         
 
         return redirect()->route('prestamos.index')->with('success', 'Prestamo finalizado');
     }

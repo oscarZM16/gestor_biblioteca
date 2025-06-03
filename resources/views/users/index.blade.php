@@ -128,11 +128,6 @@
         <h6><i class="bi bi-journal-arrow-down me-2"></i> Solicitudes de Préstamo</h6>
         <a href="{{ url('/prestamos/create') }}"><i class="bi bi-bookmark-plus me-2"></i> Crear Préstamo</a>
         <a href="{{ url('/prestamos') }}"><i class="bi bi-inboxes me-2"></i> Nuevas Solicitudes</a>
-        @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
-            <a href="{{ url('/admin/prestamos') }}"><i class="bi bi-check2-square me-2"></i> Aprobación</a>
-        @else
-            <a class="disabled"><i class="bi bi-lock me-2"></i> Aprobación</a>
-        @endif
     </div>
 
     <div class="sidebar-section">
@@ -161,7 +156,6 @@
         @if(in_array(auth()->user()->rol, ['administrador', 'supervisor']))
             <a href="{{ route('reportes.libros') }}"><i class="bi bi-book me-2"></i> Reporte de Libros</a>
             <a href="{{ route('reportes.prestamos') }}"><i class="bi bi-journal-check me-2"></i> Reporte de Préstamos</a>
-            <a href="{{ route('reportes.disponibles') }}"><i class="bi bi-bookmark-check me-2"></i> Libros Disponibles</a>
         @else
             <a class="disabled"><i class="bi bi-lock me-2"></i> Acceso a Reportes</a>
         @endif

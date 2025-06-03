@@ -41,10 +41,18 @@
                         <td>{{ $prestamo->fecha_devolucion }}</td>
                         <td>{{ $prestamo->fecha_entrega}}</td>
                         <td>{{ $prestamo->created_at->format('Y-m-d H:i') }}</td>
-                        <form action="{{ route('prestamos.estado',$prestamo->id) }}" method="post">
-                            @csrf
-                            <td><button onclick="abrirModal()" class="btn btn-outline-dark">Finalizar</button></td>
-                        </form>
+                        @if($prestamo->estado === 'devuelto')
+                            <td>
+                                <button class="btn btn-success" disabled>Finalizado</button>
+                            </td>
+                        @else
+                            <form action="{{ route('prestamos.estado', $prestamo->id) }}" method="POST">
+                                @csrf
+                                <td>
+                                    <button type="submit" class="btn btn-outline-dark">Finalizar</button>
+                                </td>
+                            </form>
+                        @endif
                     </tr>
                 @empty
                     <tr><td colspan="5">No has solicitado ningún préstamo aún.</td></tr>
